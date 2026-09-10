@@ -1,19 +1,27 @@
 name: Mobile CI
+
 on:
   push:
-    paths: ['mobile/**']
+    paths:
+      - 'mobile/**'
   pull_request:
-    paths: ['mobile/**']
+    paths:
+      - 'mobile/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install and type-check Sentinel app
-        working-directory: mobile/sentinel-app
-        run: |
-          npm install
-          npm run typecheck --if-present
+
+      - name: Install dependencies
+        working-directory: ./mobile/sentinel-app
+        run: npm ci
+
+      - name: Type check
+        working-directory: ./mobile/sentinel-app
+        run: npm run typecheck
