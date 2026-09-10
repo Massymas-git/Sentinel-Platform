@@ -1,0 +1,14 @@
+name: Firmware Build
+on:
+  push:
+    paths: ['firmware/**']
+  pull_request:
+    paths: ['firmware/**']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build Sentinel OS image
+        working-directory: firmware/sentinel-os
+        run: ./build.sh

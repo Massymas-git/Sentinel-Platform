@@ -1,0 +1,10 @@
+services:
+  recon-agent:
+    build: ../agents/recon-agent
+    restart: unless-stopped
+  vuln-agent:
+    build: ../agents/vuln-agent
+    restart: unless-stopped
+  telemetry-agent:
+    build: ../agents/telemetry-agent
+    restart: unless-stopped

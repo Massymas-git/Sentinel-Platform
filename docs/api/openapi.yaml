@@ -1,0 +1,8 @@
+openapi: 3.0.3
+info:
+  title: Sentinel Platform API
+  version: 0.1.0
+  description: Placeholder contract; generate the authoritative document from FastAPI.
+servers:
+  - url: https://api.example.invalid
+paths: {}

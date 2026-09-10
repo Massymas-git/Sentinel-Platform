@@ -1,0 +1,9 @@
+[Interface]
+PrivateKey = REPLACE_AT_PROVISIONING
+Address = 10.250.0.2/32
+
+[Peer]
+PublicKey = REPLACE_WITH_CONTROL_PLANE_PUBLIC_KEY
+AllowedIPs = 10.250.0.0/16
+Endpoint = REPLACE_WITH_CONTROL_PLANE_ENDPOINT
+PersistentKeepalive = 25
