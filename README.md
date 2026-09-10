@@ -1,28 +1,19 @@
-# Sentinel Platform
+# Lulana Sentinel Platform
 
-Sentinel Platform is the repository for the Sentinel edge security probe, cloud SOC services, mobile applications, and deployment infrastructure.
+AI-driven home cybersecurity for South Africa. POPIA-compliant by design.
 
-## Repository layout
+## Product Tiers
+- **Home WiFi Audit** — R999 technician-led assessment
+- **Sentinel Lite** — R2,999 / R299×12 (2.4GHz monitoring)
+- **Sentinel Pro** — R5,999 / R399×24 (Dual-band + UPS + AI SOC)
 
-- `firmware/` — Sentinel OS image and edge agents.
-- `backend/` — FastAPI API, agent workflows, workers, and tests.
-- `mobile/` — Expo applications for customers and technicians.
-- `infrastructure/` — Terraform, Ansible, and monitoring configuration.
-- `docs/` — Architecture, API, hardware, and operational documentation.
-- `.github/` — CI workflows and contribution templates.
+## Architecture
+- **Edge:** Raspberry Pi 5 running Dockerized agents
+- **Cloud:** AWS Cape Town (af-south-1), FastAPI, LangGraph, PostgreSQL
+- **AI:** Cloud-native LLM swarm (GPT-4o / Claude 3.5 / Mistral 7B on g5)
 
-## Development status
-
-This repository is an initial production-oriented scaffold. Each component should add its own implementation, tests, and operational documentation as it matures.
-
-## Getting started
-
-```bash
-./scripts/setup-dev.sh
-```
-
-For security-sensitive configuration, copy `.env.example` to `.env` and never commit credentials, private keys, or customer data.
+## Quick Start
+See `docs/architecture/` for system diagrams and `firmware/` for probe setup.
 
 ## License
-
-This project is distributed under the Business Source License 1.1. See `LICENSE`.
+Proprietary — Lulana Solutions (Pty) Ltd.

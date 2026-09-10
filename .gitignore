@@ -1,44 +1,31 @@
 # Python
 __pycache__/
 *.py[cod]
+*.egg-info/
+.env
 .venv/
-venv/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
 
-# Node / Expo
+# Node
 node_modules/
 .expo/
 dist/
-web-build/
-*.tsbuildinfo
-
-# Environment and secrets
-.env
-.env.*
-!.env.example
-*.pem
-*.key
-
-# Build outputs
-build/
-out/
-*.img
-*.iso
-
-# IDE / OS
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
 
 # Terraform
-.terraform/
 *.tfstate
 *.tfstate.*
+.terraform/
 
-# Generated API docs
-backend/openapi.generated.yaml
+# Secrets
+*.pem
+*.key
+secrets/
+wireguard.conf
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
