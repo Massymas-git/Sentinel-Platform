@@ -1,24 +1,31 @@
-name: Deploy Staging
+name: Deploy to Staging
+
 on:
-  workflow_dispatch:
-    inputs:
-      image_tag:
-        description: Container image tag to deploy
-        required: true
-        default: latest
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: staging
-    permissions:
-      contents: read
-      id-token: write
     steps:
       - uses: actions/checkout@v4
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: af-south-1
-          role-to-assume: ${{ secrets.STAGING_DEPLOY_ROLE_ARN }}
+
+      - name: Build and push to ECR
+        run: |
+          aws ecr get-login-password | docker login --username AWS --password-stdin ${{ secrets.ECR_REGISTRY }}
+          docker build -t sentinel-api ./backend
+          docker tag sentinel-api:latest ${{ secrets.ECR_REGISTRY }}/sentinel-api:latest
+          docker push ${{ secrets.ECR_REGISTRY }}/sentinel-api:latest
+
       - name: Deploy to ECS
-        run: echo "Deploy image ${{ inputs.image_tag }} using the approved infrastructure pipeline"
+        run: |
+          aws ecs update-service --cluster sentinel-staging --service api --force-new-deployment
